@@ -1,5 +1,6 @@
 import { CheckoutResource, LineItem } from 'shopify-buy'
 import { PriceV2 } from './'
+import { Variant } from './product'
 
 /** Shopify Checkout */
 export type Checkout = {
@@ -31,7 +32,39 @@ export type Checkout = {
   shippingLine: any
   customAttributes: []
   order: any
-  lineItems: LineItem[]
+  lineItems: CheckoutLineItem[]
 } & CheckoutResource
 
-export type CheckoutLineItem = LineItem
+export type CheckoutLineItem = {
+  /** Product variant */
+  variant: Variant
+
+  /** Line item's custom attributes */
+  customAttributes: LineItem
+
+  /** Line item's discount allocations (?) */
+  discountAllocations: unknown[]
+
+  /** GraphQL Pagination */
+  hasNextPage: boolean
+
+  /** GraphQL Pagination */
+  hasPreviousPage: boolean
+
+  /** Line item's Base 64 line item */
+  id: string
+
+  /** GraphQL Pagination query */
+  nextPageQueryAndPath: () => void
+
+  /** Line item's quantitiy */
+  quantity: number
+
+  refetchQuery: () => void
+
+  /** Line item's title */
+  title: string
+
+  /** GraphQL Type */
+  type: object
+}

@@ -26,3 +26,11 @@ type SelectedOption = {
   name: string
   value: string
 }
+
+export type AttributeInput = {
+  key?: string
+  value?: string
+  id?: string | number
+  quantity?: number
+  variantId?: string
+}
