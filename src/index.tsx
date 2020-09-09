@@ -1,6 +1,1 @@
-import * as React from 'react';
-
-// Delete me
-export const Thing = () => {
-  return <div>Thing</div>;
-};
+export { default as CartProvider } from './CartProvider/CartProvider';
