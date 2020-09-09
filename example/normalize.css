@@ -1,0 +1,8 @@
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 5px auto rgba(0, 150, 255, 1);
+}
