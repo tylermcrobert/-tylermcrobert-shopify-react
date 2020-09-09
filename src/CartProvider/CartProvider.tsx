@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useRef } from 'react'
 import { Cart, ICheckout, ICheckoutLineItem, ShopifyClient } from '../types'
 import useCartControls, { initialCart } from './useCartControls'
 import shopifyClient from 'shopify-buy'
@@ -24,21 +24,22 @@ export const CartProvider: React.FC<{
   accessToken: string
   fetch: any
 }> = ({ children, domain, accessToken, fetch }) => {
-  const client: ShopifyClient = (shopifyClient as any).buildClient(
-    {
-      domain: domain,
-      storefrontAccessToken: accessToken,
-    },
-    fetch
-  ) as shopifyClient.Client
-
+  const clientRef: ShopifyClient = useRef(
+    (shopifyClient as any).buildClient(
+      {
+        domain: domain,
+        storefrontAccessToken: accessToken,
+      },
+      fetch
+    ) as shopifyClient.Client
+  )
   const {
     cart,
     addToCart,
     openCart,
     closeCart,
     updateLineItem,
-  } = useCartControls(client)
+  } = useCartControls(clientRef.current)
 
   return (
     <CartCtx.Provider
