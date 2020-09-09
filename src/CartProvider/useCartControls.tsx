@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-case-declarations */
 import { useEffect } from 'react'
-import { Cart, ICheckout, ICheckoutLineItem, ShopifyClient } from '../types'
+import { Cart, Checkout, CheckoutLineItem, ShopifyClient } from '../types'
 import { useReducer } from 'reinspect'
 
 const LOCAL_STORAGE_CHECKOUT_TOKEN = 'checkoutToken'
@@ -15,7 +15,7 @@ export const initialCart: Cart = {
 }
 
 type Action =
-  | { type: 'updateCheckout'; checkout: ICheckout }
+  | { type: 'updateCheckout'; checkout: Checkout }
   | { type: 'setCartErr'; err: any }
   | { type: 'setLoading' }
   | { type: 'setIsCartOpen'; payload: boolean }
@@ -45,7 +45,7 @@ type HookReturn = {
   addToCart: (variantId: string, qty: number) => void
   openCart: () => void
   closeCart: () => void
-  updateLineItem: (id: string, payload: Partial<ICheckoutLineItem>) => void
+  updateLineItem: (id: string, payload: Partial<CheckoutLineItem>) => void
 }
 
 const useCartControls = (client: ShopifyClient): HookReturn => {
@@ -57,7 +57,7 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
   )
 
   /** Helpers */
-  const updateCheckout = (checkout: ICheckout) =>
+  const updateCheckout = (checkout: Checkout) =>
     dispatch({ type: 'updateCheckout', checkout })
   const setCartErr = (err: any) => dispatch({ type: 'setCartErr', err })
 
@@ -69,7 +69,7 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
     const createNewCheckout = () => {
       client.checkout
         .create()
-        .then((checkout: ICheckout) => {
+        .then((checkout: Checkout) => {
           updateCheckout(checkout)
           localStorage.setItem(LOCAL_STORAGE_CHECKOUT_TOKEN, checkout.id)
         })
@@ -79,7 +79,7 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
     if (localStorageToken) {
       client.checkout
         .fetch(localStorageToken)
-        .then((checkout: ICheckout) => updateCheckout(checkout))
+        .then((checkout: Checkout) => updateCheckout(checkout))
         .catch((err: any) => {
           setCartErr(err)
           createNewCheckout()
@@ -102,7 +102,7 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
             quantity: qty,
           },
         ])
-        .then((checkout: ICheckout) => {
+        .then((checkout: Checkout) => {
           updateCheckout(checkout)
           dispatch({ type: 'setIsCartOpen', payload: true })
         })
@@ -115,12 +115,12 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
   const openCart = () => dispatch({ type: 'setIsCartOpen', payload: true })
   const closeCart = () => dispatch({ type: 'setIsCartOpen', payload: false })
 
-  const updateLineItem = (id: string, payload: Partial<ICheckoutLineItem>) => {
+  const updateLineItem = (id: string, payload: Partial<CheckoutLineItem>) => {
     // TODO: set 'is loading true' and block new interactions in here
     if (cart.shopifyCheckout) {
       client.checkout
         .updateLineItems(cart.shopifyCheckout.id, { id, ...payload })
-        .then((newCheckout: ICheckout) => updateCheckout(newCheckout))
+        .then((newCheckout: Checkout) => updateCheckout(newCheckout))
     }
   }
 

@@ -7,9 +7,12 @@ import {
   Client,
   CheckoutLink,
   CloseCartButton,
+  Collection as CollectionType,
 } from '../.'
 import './app.css'
 import './normalize.css'
+
+import Collection from './components/Collection'
 
 const cn = (arr: (string | false | null)[]) => arr.filter(a => a).join(' ')
 
@@ -24,14 +27,37 @@ const App = () => {
     <div>
       <CartProvider client={client}>
         <CartConsumer />
+        <ProductGrid />
       </CartProvider>
+    </div>
+  )
+}
+
+const ProductGrid = () => {
+  const [collections, setCollections] = React.useState<CollectionType[] | null>(
+    null
+  )
+
+  React.useEffect(() => {
+    client.collection
+      .fetchAllWithProducts()
+      .then((res: CollectionType[]) => setCollections(res))
+  }, [])
+
+  return (
+    <div>
+      <h2>Collections</h2>
+      {collections
+        ? collections.map(collection => (
+            <Collection key={collection.handle} data={collection} />
+          ))
+        : 'Loading collections...'}
     </div>
   )
 }
 
 const CartConsumer = () => {
   const cart = useCart()
-  console.log(cart.shopifyCheckout)
 
   return (
     <div>

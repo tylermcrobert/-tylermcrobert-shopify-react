@@ -40,6 +40,8 @@ h4,
 h5,
 h6 {
   font-weight: 400;
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
 .f {
@@ -48,4 +50,22 @@ h6 {
 
 .sb {
   justify-content: space-between;
+}
+
+.productGrid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+.productCard {
+  border: 1px solid black;
+  width: 100%;
+  max-width: 10rem;
+  margin: 0.5rem;
+}
+
+.productCard img {
+  width: 100%;
+  display: block;
 }

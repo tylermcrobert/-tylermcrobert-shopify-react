@@ -1,14 +1,14 @@
 import React, { createContext } from 'react'
-import { Cart, ICheckout, ICheckoutLineItem } from '../types'
+import { Cart } from '../types'
 import useCartControls, { initialCart } from './useCartControls'
-import shopifyClient from 'shopify-buy'
+import shopifyClient, { CheckoutResource, LineItem } from 'shopify-buy'
 
 type CartCtx = {
   addToCart: (variantId: string, qty: number) => void
-  updateLineItem: (id: string, payload: Partial<ICheckoutLineItem>) => void
+  updateLineItem: (id: string, payload: Partial<LineItem>) => void
   openCart: () => void
   closeCart: () => void
-  shopifyCheckout: ICheckout | null
+  shopifyCheckout: CheckoutResource | null
 }
 
 export const CartCtx = createContext<CartCtx & Cart>({
