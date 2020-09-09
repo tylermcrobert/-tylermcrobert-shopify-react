@@ -1,8 +1,27 @@
 /* eslint-disable no-case-declarations */
 import { useReducer, useEffect } from 'react'
-import { Product } from '../index'
-import { ProductState, initialProductState } from './ProductProvider'
-import { useCart } from '../hooks'
+import { Product, Variant } from '../types'
+import { useCart } from '../hooks/useCart'
+
+export type ProductState = {
+  currentVariant: Variant
+  quantity: number
+  isSubnav: boolean
+  currentColor: {
+    name: string | null
+    hex: string | null
+  }
+}
+
+export const initialProductState: ProductState = {
+  currentVariant: (null as unknown) as Variant,
+  quantity: 1,
+  isSubnav: false,
+  currentColor: {
+    name: null,
+    hex: null,
+  },
+}
 
 export type Action =
   | { type: 'changeOptions'; options: any }

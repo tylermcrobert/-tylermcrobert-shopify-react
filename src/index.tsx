@@ -1,4 +1,4 @@
-export * from './CartProvider/CartProvider'
+export { CartProvider } from './CartProvider/CartProvider'
 
 /** Product provider */
 export { default as ProductProvider } from './ProductProvider/ProductProvider'

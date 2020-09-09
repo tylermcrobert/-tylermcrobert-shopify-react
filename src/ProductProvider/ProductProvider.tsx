@@ -1,27 +1,11 @@
 /* eslint-disable no-case-declarations */
 import React, { createContext } from 'react'
-import { Variant, Product } from '../index'
-import useProductState, { Action } from './useProductState'
-
-export type ProductState = {
-  currentVariant: Variant
-  quantity: number
-  isSubnav: boolean
-  currentColor: {
-    name: string | null
-    hex: string | null
-  }
-}
-
-export const initialProductState: ProductState = {
-  currentVariant: (null as unknown) as Variant,
-  quantity: 1,
-  isSubnav: false,
-  currentColor: {
-    name: null,
-    hex: null,
-  },
-}
+import { Product } from '../types'
+import useProductState, {
+  Action,
+  ProductState,
+  initialProductState,
+} from './useProductState'
 
 export const ProductCtx = createContext<{
   product: Product

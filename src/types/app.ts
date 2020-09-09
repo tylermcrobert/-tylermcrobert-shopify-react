@@ -1,4 +1,4 @@
-import { ICheckout } from './shopify'
+import { Checkout } from './shopify/checkout'
 
 export type ShopifyClient = any
 
@@ -9,5 +9,5 @@ export type Cart = {
   isLoading: boolean
 
   // shopify
-  shopifyCheckout: ICheckout | null
+  shopifyCheckout: Checkout | null
 }

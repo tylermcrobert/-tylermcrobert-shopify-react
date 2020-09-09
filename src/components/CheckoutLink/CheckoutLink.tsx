@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from '../../index'
+import { useCart } from '../../hooks'
 
 interface CheckoutProps extends React.HTMLAttributes<HTMLAnchorElement> {
   children?: string
