@@ -1,13 +1,13 @@
-import { ICheckout } from "./shopify";
+import { ICheckout } from './shopify'
 
-export type ShopifyClient = any;
+export type ShopifyClient = any
 
 export type Cart = {
-  isCartOpen: boolean;
-  errorAdding: boolean;
-  cartFetchError: boolean;
-  isLoading: boolean;
+  isCartOpen: boolean
+  errorAdding: boolean
+  cartFetchError: boolean
+  isLoading: boolean
 
   // shopify
-  shopifyCheckout: ICheckout | null;
-};
+  shopifyCheckout: ICheckout | null
+}

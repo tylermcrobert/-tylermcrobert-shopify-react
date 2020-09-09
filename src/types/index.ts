@@ -1,2 +1,2 @@
-export * from './shopify';
-export * from './app';
+export * from './shopify'
+export * from './app'

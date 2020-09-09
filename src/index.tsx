@@ -1,1 +1,2 @@
-export { default as CartProvider } from './CartProvider/CartProvider';
+export * from './CartProvider/CartProvider'
+export * from './hooks'
