@@ -1,11 +1,8 @@
 import React from 'react'
 import { useCart } from '../../hooks'
+import { ExtendableButtonProps } from '../../types/internal'
 
-interface CloseCartButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  onclick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any
-}
-
-const CloseCartButton: React.FC<CloseCartButtonProps> = ({
+const CloseCartButton: React.FC<ExtendableButtonProps> = ({
   children,
   onClick: handleClick,
   ...props
