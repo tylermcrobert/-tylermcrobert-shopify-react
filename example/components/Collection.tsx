@@ -1,5 +1,5 @@
 import React from 'react'
-import { Product, Collection } from '../../dist'
+import { Collection, ProductProvider, useProduct } from '../../dist'
 
 const Collection: React.FC<{ data: Collection }> = ({ data }) => {
   const products = data.products.map(item => item)
@@ -9,18 +9,22 @@ const Collection: React.FC<{ data: Collection }> = ({ data }) => {
       <h3>{data.handle}</h3>
       <div className="productGrid">
         {products.map(product => (
-          <ProductCard data={product} key={product.handle} />
+          <ProductProvider product={product} key={product.handle}>
+            <ProductCard key={product.handle} />
+          </ProductProvider>
         ))}
       </div>
     </div>
   )
 }
 
-const ProductCard: React.FC<{ data: Product }> = ({ data }) => {
+const ProductCard: React.FC = () => {
+  const { product } = useProduct()
+
   return (
     <div className="productCard">
-      <img src={data.images[0].src} />
-      {data.title}
+      <img src={product.images[0].src} />
+      {product.title}
     </div>
   )
 }

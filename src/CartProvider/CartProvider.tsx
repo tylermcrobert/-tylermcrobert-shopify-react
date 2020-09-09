@@ -1,14 +1,15 @@
 import React, { createContext } from 'react'
-import { Cart } from '../types'
+import { Cart, Client, CheckoutLineItem, Checkout } from '../types'
 import useCartControls, { initialCart } from './useCartControls'
-import shopifyClient, { CheckoutResource, LineItem } from 'shopify-buy'
+import shopifyClient from 'shopify-buy'
 
 type CartCtx = {
   addToCart: (variantId: string, qty: number) => void
-  updateLineItem: (id: string, payload: Partial<LineItem>) => void
+  updateLineItem: (id: string, payload: Partial<CheckoutLineItem>) => void
   openCart: () => void
   closeCart: () => void
-  shopifyCheckout: CheckoutResource | null
+  shopifyCheckout: Checkout | null
+  client: Client
 }
 
 export const CartCtx = createContext<CartCtx & Cart>({
@@ -17,6 +18,7 @@ export const CartCtx = createContext<CartCtx & Cart>({
   openCart: () => null,
   closeCart: () => null,
   ...initialCart,
+  client: (null as unknown) as Client,
 })
 
 export const CartProvider: React.FC<{
@@ -33,6 +35,7 @@ export const CartProvider: React.FC<{
   return (
     <CartCtx.Provider
       value={{
+        client: client as Client,
         addToCart,
         updateLineItem,
         openCart,
