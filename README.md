@@ -7,9 +7,9 @@ A data controller for Shopify Storefront data.
 To use the Shopify React plugin, start by wrapping your app in the `<CartProvider />`. This provider requires a buy SDK `client`.
 
 ```tsx
-import { CartProvider, shopifyClient } from '@tylermcrobert/shopify-react'
+import { CartProvider, Client } from '@tylermcrobert/shopify-react'
 
-const client = shopifyClient.buildClient({
+const client = Client.buildClient({
   domain: 'my-store.myshopify.com',
   accessToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 })
