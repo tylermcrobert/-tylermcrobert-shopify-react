@@ -8,6 +8,7 @@ import {
   CheckoutLink,
   CloseCartButton,
   Collection as CollectionType,
+  LineItem,
 } from '../.'
 import './app.css'
 import './normalize.css'
@@ -98,9 +99,7 @@ const CartUI = () => {
 }
 
 const CartPanel = () => {
-  const { isCartOpen, ...cart } = useCart()
-
-  console.log(cart.shopifyCheckout)
+  const { isCartOpen, shopifyCheckout } = useCart()
 
   return (
     <div className={cn(['cart', isCartOpen && '-open'])}>
@@ -109,10 +108,13 @@ const CartPanel = () => {
         <CloseCartButton />
       </div>
       <div>
-        {cart.shopifyCheckout?.lineItems.map(lineItem => lineItem.title)}
+        {shopifyCheckout?.lineItems.map(lineItem => (
+          <LineItem.Wrapper data={lineItem} key={lineItem.id} />
+        ))}
       </div>
-      <CheckoutLink className="button" />
+      <CheckoutLink className="button db" />
     </div>
   )
 }
+
 ReactDOM.render(<App />, document.getElementById('root'))

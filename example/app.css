@@ -7,15 +7,15 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  /* color: black; */
 }
 
 .button {
-  border: 1px solid black;
+  border: 1px solid #551a8b;
   padding: 1em 2em;
   display: inline-block;
   border-radius: 500px;
-  display: block;
+  display: inline-block;
 }
 
 .cart {
@@ -26,13 +26,45 @@ a {
   position: fixed;
   right: 0;
   width: 100%;
-  max-width: 30rem;
+  max-width: 40rem;
   display: none;
   background: white;
 }
 
 .cart.-open {
   display: block;
+}
+
+.lineItem {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  grid-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lineItem__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lineItem__row.align-bottom {
+  align-items: flex-end;
+}
+
+.lineItem img {
+  max-width: 100%;
+}
+
+.qtySelect {
+  border: 1px solid #551a8b;
+  padding: 0.5rem 0.25rem;
+  display: inline-block;
+  border-radius: 500px;
+  display: inline-block;
+}
+
+.qtySelect button {
+  padding: 0 0.75rem;
 }
 
 h1,
@@ -61,7 +93,6 @@ h6 {
 }
 
 .productCard {
-  border: 1px solid black;
   width: 100%;
   max-width: 20rem;
   margin: 0.5rem;
