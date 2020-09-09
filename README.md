@@ -30,7 +30,17 @@ use the `useCart` hook to access cart data and state-altering cart methods.
 import { useCart } from '@tylermcrobert/shopify-react'
 
 const Cart = ({ children }) => {
-  const { shopifyCheckout } = useCart()
+  const {
+    addToCart,
+    cartFetchError,
+    closeCart,
+    errorAdding,
+    isCartOpen,
+    isLoading,
+    openCart,
+    shopifyCheckout,
+    updateLineItem,
+  } = useCart()
   return <div>Subtotal: ${shopifyCheckout.subtotalPrice}</div>
 }
 ```

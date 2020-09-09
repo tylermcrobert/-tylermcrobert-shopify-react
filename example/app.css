@@ -1,0 +1,16 @@
+html,
+body {
+  font-family: monospace;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.button {
+  border: 1px solid black;
+  padding: 1em 2em;
+  display: inline-block;
+  border-radius: 500px;
+}
