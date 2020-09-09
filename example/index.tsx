@@ -1,16 +1,17 @@
 import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { CartProvider, useCart } from '../.'
+import { CartProvider, useCart, shopifyClient } from '../.'
+
+const client = shopifyClient.buildClient({
+  domain: 'airsign-co.myshopify.com',
+  storefrontAccessToken: '84aaa88f572f6ffabb3c83b0bfbc7365',
+})
 
 const App = () => {
   return (
     <div>
-      <CartProvider
-        domain="airsign-co.myshopify.com"
-        accessToken="84aaa88f572f6ffabb3c83b0bfbc7365"
-        fetch={null}
-      >
+      <CartProvider client={client}>
         <CartConsumer />
       </CartProvider>
     </div>

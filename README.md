@@ -4,16 +4,18 @@ A data controller for Shopify Storefront data.
 
 ## Initialization
 
-To use the Shopify React plugin, start by wrapping your app in the `<CartProvider />`. This provider requires two props — `domain`, and `accessToken`.
+To use the Shopify React plugin, start by wrapping your app in the `<CartProvider />`. This provider requires a buy SDK `client`.
 
 ```tsx
-import { CartProvider } from '@tylermcrobert/shopify-react'
+import { CartProvider, shopifyClient } from '@tylermcrobert/shopify-react'
+
+const client = shopifyClient.buildClient({
+  domain: 'my-store.myshopify.com',
+  accessToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+})
 
 const App = ({ children }) => (
-  <CartProvider
-    domain="my-store.myshopify.com"
-    accessToken="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  >
+  <CartProvider client={client}>
     <Cart />
     {children}
   </CartProvider>
@@ -22,7 +24,7 @@ const App = ({ children }) => (
 
 # Using the Cart
 
-use the `useCart` hook to
+use the `useCart` hook to access cart data and state-altering cart methods.
 
 ```tsx
 import { useCart } from '@tylermcrobert/shopify-react'
