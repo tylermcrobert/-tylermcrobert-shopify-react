@@ -14,7 +14,12 @@ const CheckoutLink: React.FC<CheckoutProps | null> = ({
   if (!shopifyCheckout) return null
 
   return (
-    <a {...props} href={shopifyCheckout.webUrl}>
+    <a
+      {...props}
+      href={shopifyCheckout.webUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {children || 'Checkout'}
     </a>
   )
