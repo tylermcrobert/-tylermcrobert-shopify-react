@@ -15,6 +15,7 @@ a {
   padding: 1em 2em;
   display: inline-block;
   border-radius: 500px;
+  display: block;
 }
 
 .cart {
@@ -27,6 +28,7 @@ a {
   width: 100%;
   max-width: 30rem;
   display: none;
+  background: white;
 }
 
 .cart.-open {
@@ -61,7 +63,7 @@ h6 {
 .productCard {
   border: 1px solid black;
   width: 100%;
-  max-width: 10rem;
+  max-width: 20rem;
   margin: 0.5rem;
 }
 

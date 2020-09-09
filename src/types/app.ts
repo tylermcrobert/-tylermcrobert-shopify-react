@@ -1,4 +1,4 @@
-import { Checkout } from './shopify/checkout'
+import { Checkout } from './shopify'
 
 export type ShopifyClient = any
 
