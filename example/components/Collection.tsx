@@ -3,7 +3,7 @@ import {
   ProductProvider,
   useProduct,
   Collection as CollectionType,
-  useCart,
+  AddToCartButton,
 } from '../../.'
 import { client } from '../index'
 
@@ -32,21 +32,13 @@ export const Collection: React.FC<{ handle: string }> = ({ handle }) => {
 }
 
 const ProductCard: React.FC = () => {
-  const { product, ...prod } = useProduct()
-  const { addToCart } = useCart()
+  const { product } = useProduct()
 
   return (
     <div className="productCard">
       <img src={product.images[0].src} />
       {product.title}
-      <button
-        className="button"
-        onClick={() =>
-          addToCart(prod.productState.currentVariant.id.toString(), 1)
-        }
-      >
-        Add to cart
-      </button>
+      <AddToCartButton className="button" />
     </div>
   )
 }

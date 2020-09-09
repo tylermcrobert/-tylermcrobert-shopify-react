@@ -4,7 +4,8 @@ export { CartProvider } from './CartProvider/CartProvider'
 export { default as ProductProvider } from './ProductProvider/ProductProvider'
 
 /** Component exports  */
-export { CheckoutLink, CloseCartButton } from './components'
+export { CheckoutLink, CloseCartButton, AddToCartButton } from './components'
+
 export { default as Client } from 'shopify-buy'
 
 /** Export hooks */
