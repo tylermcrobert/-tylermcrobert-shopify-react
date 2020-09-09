@@ -15,6 +15,7 @@ import './normalize.css'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 import Collection from './components/Collection'
+import Product from './components/Product'
 
 const cn = (arr: (string | false | null)[]) => arr.filter(a => a).join(' ')
 
@@ -38,15 +39,21 @@ const Router = () => {
   return (
     <BrowserRouter>
       <CartUI />
-      <Route path="/collections/:id" exact>
-        {data => {
-          return <Collection handle={data.match?.params.id} />
-        }}
-      </Route>
-      <Route path="/" exact>
-        <CollectionsList />
-      </Route>
-      <Switch></Switch>
+      <Switch>
+        <Route path="/collections/:id" exact>
+          {data => {
+            return <Collection handle={data.match?.params.id} />
+          }}
+        </Route>
+        <Route path="/product/:id" exact>
+          {data => {
+            return <Product handle={data.match?.params.id} />
+          }}
+        </Route>
+        <Route path="/" exact>
+          <CollectionsList />
+        </Route>
+      </Switch>
     </BrowserRouter>
   )
 }

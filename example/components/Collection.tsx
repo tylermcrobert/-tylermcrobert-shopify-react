@@ -6,6 +6,7 @@ import {
   AddToCartButton,
 } from '../../.'
 import { client } from '../index'
+import { Link } from 'react-router-dom'
 
 export const Collection: React.FC<{ handle: string }> = ({ handle }) => {
   const [collection, setCollection] = useState<CollectionType | null>(null)
@@ -35,11 +36,13 @@ const ProductCard: React.FC = () => {
   const { product } = useProduct()
 
   return (
-    <div className="productCard">
-      <img src={product.images[0].src} />
-      {product.title}
-      <AddToCartButton className="button" />
-    </div>
+    <Link to={`/product/${product.handle}`}>
+      <div className="productCard">
+        <img src={product.images[0].src} />
+        <div>{product.title}</div>
+        <AddToCartButton className="button" />
+      </div>
+    </Link>
   )
 }
 
