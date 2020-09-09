@@ -5,6 +5,9 @@ interface CheckoutProps extends React.HTMLAttributes<HTMLAnchorElement> {
   children?: string
 }
 
+/**
+ * Links user to Shopify Checkout
+ */
 const CheckoutLink: React.FC<CheckoutProps | null> = ({
   children,
   ...props
