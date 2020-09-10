@@ -21,8 +21,8 @@ const cn = (arr: (string | false | null)[]) => arr.filter(a => a).join(' ')
 
 // Remember to clear cookies when switching values
 export const client = Client.buildClient({
-  domain: 'pistils-nursery.myshopify.com',
-  storefrontAccessToken: 'ffb71a0587c96b47c38e04c33d5b5dd2',
+  domain: 'shop.prima.co',
+  storefrontAccessToken: '8fccc24c08648a0e92fa34638fba7788',
 })
 
 const App = () => {

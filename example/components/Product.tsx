@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createContext, useContext } from 'react'
 import { client } from '..'
 import {
   Product,
@@ -6,6 +6,7 @@ import {
   useProduct,
   AddToCartButton,
   QtySelector,
+  ProductOptions,
 } from '../../.'
 
 const ProductWrapper: React.FC<{ handle: string }> = ({ handle }) => {
@@ -30,23 +31,20 @@ const ProductWrapper: React.FC<{ handle: string }> = ({ handle }) => {
 }
 
 const Product = () => {
-  const { product, productState, setOptions, setQuantity } = useProduct()
+  const { product, productState, setQuantity } = useProduct()
 
   return (
     <div className="productPage">
       <div>
         <img src={productState.currentVariant.image.src} alt={product.title} />
       </div>
-
       <div>
         <h1>{product.title}</h1>
-
-        <Option />
+        <ProductOptions />
         <QtySelector
           onUpdate={num => setQuantity(num)}
           value={productState.quantity}
         />
-
         <AddToCartButton className="button" />
         <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
       </div>
@@ -54,40 +52,4 @@ const Product = () => {
   )
 }
 
-const Option = () => {
-  const { product, productState, setOptions } = useProduct()
-
-  const isSelected = (optionName, optionValue) =>
-    productState.currentVariant.selectedOptions.filter(
-      option => option.name === optionName
-    )[0].value === optionValue
-
-  return (
-    <>
-      {product.options.map(option => (
-        <div key={option.name}>
-          <h2>{option.name}</h2>
-
-          {option.values.map(({ value }) => {
-            const selected = isSelected(option.name, value)
-
-            return (
-              <div key={value}>
-                <input
-                  type="radio"
-                  name={option.name}
-                  value={value}
-                  id={value}
-                  checked={selected}
-                  onChange={() => setOptions({ [option.name]: value })}
-                />
-                <label htmlFor={value}>{value}</label>
-              </div>
-            )
-          })}
-        </div>
-      ))}
-    </>
-  )
-}
 export default ProductWrapper
