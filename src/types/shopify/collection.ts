@@ -1,5 +1,4 @@
-import { Image } from 'shopify-buy'
-import { Product } from './.'
+import { Product, Image } from './.'
 
 export type Collection = {
   /** Products in collection */

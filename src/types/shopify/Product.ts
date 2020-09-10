@@ -1,7 +1,9 @@
-import { Product as ShopifyBuyProduct, ProductVariant } from 'shopify-buy'
 import { Image } from './index'
 
-export type Product = ShopifyBuyProduct & {
+export type Product = {
+  /** The product's title */
+  title: string
+
   /** The product's handle */
   handle: string
   createdAt: string
@@ -13,19 +15,28 @@ export type Product = ShopifyBuyProduct & {
   onlineStoreUrl: string
 
   options: Option[]
-  images: Image[]
+  images: Image[] | null
   variants: Variant[]
 }
 
-export type Variant = ProductVariant & {
+export type Variant = {
   selectedOptions: SelectedOption[]
+  id: string
+  title: string
+  price: string
+  weight: string
+  available: boolean
+  compareAtPrice: string
+  image?: Image
 }
 
-type Option = {
+export type Option = {
   /** GraphQL information */
   type: { name: string; kind: string }
   // Option Value
   value: string
+  /** Option name */
+  name: string
 }
 
 /** Options that are selected */

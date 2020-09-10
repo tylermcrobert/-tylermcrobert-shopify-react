@@ -38,7 +38,7 @@ const ProductCard: React.FC = () => {
   return (
     <Link to={`/product/${product.handle}`}>
       <div className="productCard">
-        <img src={product.images[0].src} />
+        <img src={product.images[0]?.src} />
         <div>{product.title}</div>
         <AddToCartButton className="button" />
       </div>

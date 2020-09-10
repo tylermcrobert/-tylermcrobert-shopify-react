@@ -21,8 +21,8 @@ const cn = (arr: (string | false | null)[]) => arr.filter(a => a).join(' ')
 
 // Remember to clear cookies when switching values
 export const client = Client.buildClient({
-  domain: 'shop.prima.co',
-  storefrontAccessToken: '8fccc24c08648a0e92fa34638fba7788',
+  domain: 'nuggslabs.myshopify.com',
+  storefrontAccessToken: '7f207b024ce99ba7022fe599c442cba5',
 })
 
 const App = () => {

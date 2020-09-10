@@ -1222,11 +1222,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/shopify-buy@^2.10.2":
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/@types/shopify-buy/-/shopify-buy-2.10.2.tgz#c2d47ab3c66af2b67e7c0b1dbea552b01b241c88"
-  integrity sha512-l+bL/kBP8/Bd3Xno7SATUtIwuEIgjVuGqkczfKV7XW14toX7uXYY/FggvuuruHNmDHMWKBub3HHUxdEQAA4lqQ==
-
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"

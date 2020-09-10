@@ -75,9 +75,8 @@ const Price: ReactEl<HTMLSpanElement, {}> = ({ ...props }) => {
 
 const Image: ReactEl<HTMLImageElement, {}> = ({ ...props }) => {
   const lineItem = React.useContext(LineItemCtx)
-  return (
-    <img {...props} src={lineItem.variant.image.src} alt={lineItem.title} />
-  )
+  const image = lineItem.variant.image?.src
+  return <img {...props} src={image || ''} alt={lineItem.title} />
 }
 
 const Remove: ReactEl<HTMLButtonElement, {}> = ({ ...props }) => {

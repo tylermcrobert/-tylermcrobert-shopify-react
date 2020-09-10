@@ -1,4 +1,3 @@
-import { CheckoutResource, LineItem } from 'shopify-buy'
 import { PriceV2 } from './'
 import { Variant } from './product'
 
@@ -33,14 +32,14 @@ export type Checkout = {
   customAttributes: []
   order: any
   lineItems: CheckoutLineItem[]
-} & CheckoutResource
+}
 
 export type CheckoutLineItem = {
   /** Product variant */
   variant: Variant
 
-  /** Line item's custom attributes */
-  customAttributes: LineItem
+  // /** Line item's custom attributes */
+  // customAttributes: LineItem
 
   /** Line item's discount allocations (?) */
   discountAllocations: unknown[]
