@@ -12,13 +12,20 @@ export type Product = ShopifyBuyProduct & {
   publishedAt: string
   onlineStoreUrl: string
 
-  // options: Option[]
+  options: Option[]
   images: Image[]
   variants: Variant[]
 }
 
 export type Variant = ProductVariant & {
   selectedOptions: SelectedOption[]
+}
+
+type Option = {
+  /** GraphQL information */
+  type: { name: string; kind: string }
+  // Option Value
+  value: string
 }
 
 /** Options that are selected */
