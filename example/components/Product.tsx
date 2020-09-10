@@ -48,6 +48,7 @@ const Product = () => {
         />
 
         <AddToCartButton className="button" />
+        <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
       </div>
     </div>
   )
@@ -65,7 +66,7 @@ const Option = () => {
     <>
       {product.options.map(option => (
         <div key={option.name}>
-          <h4>{option.name}</h4>
+          <h2>{option.name}</h2>
 
           {option.values.map(({ value }) => {
             const selected = isSelected(option.name, value)

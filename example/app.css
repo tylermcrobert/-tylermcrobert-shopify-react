@@ -1,8 +1,9 @@
 html,
 body {
-  font-family: monospace;
+  /* font-family: monospace; */
   margin: 0;
   padding: 0;
+  font-size: 20px;
 }
 
 a {
@@ -26,7 +27,7 @@ a {
   position: fixed;
   right: 0;
   width: 100%;
-  max-width: 40rem;
+  max-width: 30rem;
   display: none;
   background: white;
 }
@@ -106,6 +107,7 @@ h6 {
 .productPage {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .productPage img {

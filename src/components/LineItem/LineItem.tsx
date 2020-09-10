@@ -24,8 +24,11 @@ const CartLineItem: ReactEl<HTMLDivElement, { data: CheckoutLineItem }> = ({
           <>
             <Image />
             <div className="lineItem__wrapper">
-              <div className="lineItem__row">
-                <Title />
+              <div className="lineItem__row top">
+                <div>
+                  <Title />
+                  <Variant />
+                </div>
                 <Price />
               </div>
               <div className="lineItem__row bottom">
@@ -58,6 +61,13 @@ const Title: ReactEl<HTMLHeadingElement, {}> = ({ ...props }) => {
   return <h3 {...props}>{lineItem.title}</h3>
 }
 
+const Variant: ReactEl<HTMLSpanElement | null, {}> = ({ ...props }) => {
+  const lineItem = React.useContext(LineItemCtx)
+
+  const title = lineItem.variant.title
+  return title !== 'Default Title' ? <span {...props}>{title}</span> : null
+}
+
 const Price: ReactEl<HTMLSpanElement, {}> = ({ ...props }) => {
   const lineItem = React.useContext(LineItemCtx)
   return <span {...props}>${lineItem.variant.price}</span>
@@ -79,7 +89,7 @@ const Remove: ReactEl<HTMLButtonElement, {}> = ({ ...props }) => {
       {...props}
       onClick={() => updateLineItem(lineItem.id, { quantity: 0 })}
     >
-      x
+      ✕
     </button>
   )
 }
@@ -92,6 +102,7 @@ export const LineItem = {
   Price,
   Image,
   Remove,
+  Variant,
 }
 
 export default CartLineItem
