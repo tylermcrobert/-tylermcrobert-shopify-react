@@ -2,6 +2,7 @@ import React, { createContext } from 'react'
 import { Cart, Client, CheckoutLineItem, Checkout } from '../types'
 import useCartControls, { initialCart } from './useCartControls'
 import shopifyClient from 'shopify-buy'
+import { StateInspector } from 'reinspect'
 
 type CartCtx = {
   addToCart: (variantId: string, qty: number) => void
@@ -21,9 +22,19 @@ export const CartCtx = createContext<CartCtx & Cart>({
   client: (null as unknown) as Client,
 })
 
-export const CartProvider: React.FC<{
+type CartProviderProps = React.FC<{
   client: shopifyClient.Client
-}> = ({ children, client }) => {
+}>
+
+export const CartProvider: CartProviderProps = ({ children, client }) => {
+  return (
+    <StateInspector name="Cart">
+      <Inner client={client}>{children}</Inner>
+    </StateInspector>
+  )
+}
+
+const Inner: CartProviderProps = ({ children, client }) => {
   const {
     cart,
     addToCart,
@@ -31,7 +42,6 @@ export const CartProvider: React.FC<{
     closeCart,
     updateLineItem,
   } = useCartControls(client)
-
   return (
     <CartCtx.Provider
       value={{

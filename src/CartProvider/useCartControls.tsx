@@ -53,7 +53,7 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
     reducer,
     initialCart,
     state => state,
-    'cart'
+    'Cart'
   )
 
   /** Helpers */
