@@ -23,13 +23,14 @@ const CartLineItem: ReactEl<HTMLDivElement, { data: CheckoutLineItem }> = ({
         ) : (
           <>
             <Image />
-            <div>
+            <div className="lineItem__wrapper">
               <div className="lineItem__row">
                 <Title />
                 <Price />
               </div>
               <div className="lineItem__row bottom">
                 <Quantity />
+                <Remove />
               </div>
             </div>
           </>
@@ -69,6 +70,20 @@ const Image: ReactEl<HTMLImageElement, {}> = ({ ...props }) => {
   )
 }
 
+const Remove: ReactEl<HTMLButtonElement, {}> = ({ ...props }) => {
+  const lineItem = React.useContext(LineItemCtx)
+  const { updateLineItem } = useCart()
+
+  return (
+    <button
+      {...props}
+      onClick={() => updateLineItem(lineItem.id, { quantity: 0 })}
+    >
+      x
+    </button>
+  )
+}
+
 /** Compound component  */
 export const LineItem = {
   Wrapper: CartLineItem,
@@ -76,6 +91,7 @@ export const LineItem = {
   Title,
   Price,
   Image,
+  Remove,
 }
 
 export default CartLineItem
