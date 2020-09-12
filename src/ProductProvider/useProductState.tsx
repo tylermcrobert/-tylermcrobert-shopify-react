@@ -30,7 +30,7 @@ export type Action =
   | { type: 'changeSubnav'; payload: boolean }
 
 const useProductState = (product: Product) => {
-  const { client } = useCart()
+  const { client, addToCart } = useCart()
 
   const defaultVariant = {
     currentVariant: product.variants[0],
@@ -92,12 +92,19 @@ const useProductState = (product: Product) => {
   const setSubnav = (bool: boolean) =>
     dispatch({ type: 'changeSubnav', payload: bool })
 
+  const addProductToCart = () => {
+    if (productState.currentVariant.available) {
+      addToCart(productState.currentVariant.id, productState.quantity)
+    }
+  }
+
   return {
     setOptions,
     dispatch,
     productState,
     setQuantity,
     setSubnav,
+    addProductToCart,
   }
 }
 

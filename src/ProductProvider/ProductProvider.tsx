@@ -13,14 +13,14 @@ export const ProductCtx = createContext<{
   dispatch: React.Dispatch<Action>
   setOptions: (options: object) => void
   setQuantity: (quantity: number) => void
-  setSubnav: (bool: boolean) => void
+  addProductToCart: () => void
 }>({
   product: (null as unknown) as Product,
   productState: initialProductState,
   dispatch: () => null,
   setOptions: () => null,
   setQuantity: () => null,
-  setSubnav: () => null,
+  addProductToCart: () => null,
 })
 
 // TODO: Add greyed out for sold out
@@ -36,7 +36,7 @@ const ProductProvider: React.FC<{
     productState,
     setOptions,
     setQuantity,
-    setSubnav,
+    addProductToCart,
   } = useProductState(product)
 
   return (
@@ -47,7 +47,7 @@ const ProductProvider: React.FC<{
         product,
         productState,
         setOptions,
-        setSubnav,
+        addProductToCart,
       }}
     >
       {children}

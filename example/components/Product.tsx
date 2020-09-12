@@ -1,10 +1,9 @@
-import React, { useEffect, useState, createContext, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { client } from '..'
 import {
   Product,
   ProductProvider,
   useProduct,
-  AddToCartButton,
   QtySelector,
   ProductOptions,
 } from '../../.'
@@ -31,7 +30,7 @@ const ProductWrapper: React.FC<{ handle: string }> = ({ handle }) => {
 }
 
 const Product = () => {
-  const { product, productState, setQuantity } = useProduct()
+  const { product, productState, setQuantity, addProductToCart } = useProduct()
 
   return (
     <div className="productPage">
@@ -45,7 +44,11 @@ const Product = () => {
           onUpdate={num => setQuantity(num)}
           value={productState.quantity}
         />
-        <AddToCartButton className="button" />
+        <button className="button" onClick={addProductToCart}>
+          {productState.currentVariant.available
+            ? 'Add to cart'
+            : 'Out of Stock'}
+        </button>
         <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
       </div>
     </div>
