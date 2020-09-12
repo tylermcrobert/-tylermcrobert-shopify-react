@@ -21,8 +21,8 @@ const cn = (arr: (string | false | null)[]) => arr.filter(a => a).join(' ')
 
 // Remember to clear cookies when switching values
 export const client = Client.buildClient({
-  domain: 'nuggslabs.myshopify.com',
-  storefrontAccessToken: '7f207b024ce99ba7022fe599c442cba5',
+  domain: 'pistils-nursery.myshopify.com',
+  storefrontAccessToken: 'ffb71a0587c96b47c38e04c33d5b5dd2',
 })
 
 const App = () => {

@@ -1,22 +1,100 @@
-import { Image } from './index'
+import { GQLType, Image } from './index'
 
 export type Product = {
-  /** The product's title */
+  /**
+   * Product's Base 64 Product ID
+   */
+  id: string
+
+  /**
+   * Product's current availability
+   */
+  availableForSale: boolean
+
+  /**
+   * Date product was created
+   */
+  createdAt: string
+
+  /**
+   * Date product was updated
+   */
+  updatedAt: string
+
+  /**
+   * Product's description in RichText
+   */
+  descriptionHtml: string | null
+
+  /**
+   * Product's description string
+   */
+  description: string | null
+
+  /**
+   * Product's handle
+   */
+  handle: string
+
+  /**
+   * Product type
+   */
+  productType: string | null
+
+  /**
+   * The product's title
+   */
   title: string
 
-  /** The product's handle */
-  handle: string
-  createdAt: string
-  updatedAt: string
-  descriptionHtml: string
-  productType: string
-  tags: string
+  /**
+   * Product's vendor
+   */
+  vendor: string | null
+
+  /**
+   * Date published
+   */
   publishedAt: string
+
+  /**
+   * Product URL
+   */
   onlineStoreUrl: string
 
+  /**
+   * Product options
+   */
   options: Option[]
-  images: Image[] | null
+
+  /**
+   * Product Images
+   */
+  images?: Image[]
+
+  /**
+   * Product Variants
+   */
   variants: Variant[]
+
+  /**
+   * GraphQL information
+   */
+  type: GQLType
+
+  /**
+   * Pagination Info
+   */
+  hasNextPage: { value: boolean }
+
+  /**
+   * Pagination Info
+   */
+  hasPreviousPage: { value: boolean }
+
+  /**
+   * Pagination Info
+   */
+  variableValues: { first: number }
 }
 
 export type Variant = {
