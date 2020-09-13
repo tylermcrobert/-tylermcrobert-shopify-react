@@ -6,6 +6,7 @@ import {
   useProduct,
   QtySelector,
   ProductOptions,
+  AddToCartButton,
 } from '../../.'
 
 const ProductWrapper: React.FC<{ handle: string }> = ({ handle }) => {
@@ -30,7 +31,7 @@ const ProductWrapper: React.FC<{ handle: string }> = ({ handle }) => {
 }
 
 const Product = () => {
-  const { product, productState, setQuantity, addProductToCart } = useProduct()
+  const { product, productState, setQuantity } = useProduct()
 
   return (
     <div className="productPage">
@@ -44,11 +45,7 @@ const Product = () => {
           onUpdate={num => setQuantity(num)}
           value={productState.quantity}
         />
-        <button className="button" onClick={addProductToCart}>
-          {productState.currentVariant.available
-            ? 'Add to cart'
-            : 'Out of Stock'}
-        </button>
+        <AddToCartButton />
         <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
       </div>
     </div>
