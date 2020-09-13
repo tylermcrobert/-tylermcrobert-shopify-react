@@ -61,8 +61,6 @@ const useCartControls = (client: ShopifyClient): HookReturn => {
     dispatch({ type: 'updateCheckout', checkout })
   const setCartErr = (err: any) => {
     dispatch({ type: 'setCartErr', err })
-    console.log('asdfas;lfkjasdf')
-
     console.error(err)
   }
 
