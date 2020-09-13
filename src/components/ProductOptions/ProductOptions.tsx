@@ -29,7 +29,7 @@ const Option = () => {
 
   return (
     <div key={option.name}>
-      {name !== 'Default' && <h2>{option.name}</h2>}
+      {option.name !== 'Default' && <h2>{option.name}</h2>}
 
       {option.values.map(({ value }) => {
         const selected = isSelected(option.name, value)
