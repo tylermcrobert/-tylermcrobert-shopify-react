@@ -112,7 +112,7 @@ export type Option = {
   /** GraphQL information */
   type: { name: string; kind: string }
   // Option Value
-  value: string
+  values: { value: string }[]
   /** Option name */
   name: string
 }
