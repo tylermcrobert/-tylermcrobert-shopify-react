@@ -12,5 +12,6 @@ export { default as Client } from 'shopify-buy'
 export { useCart, useProduct } from './hooks'
 
 export * from './types'
+export * from './util'
 
 export * from './'
