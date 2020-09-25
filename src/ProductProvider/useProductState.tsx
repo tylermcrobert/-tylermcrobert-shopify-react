@@ -6,28 +6,17 @@ import { useCart } from '../hooks/useCart'
 export type ProductState = {
   currentVariant: Variant
   quantity: number
-  isSubnav: boolean
-  currentColor: {
-    name: string | null
-    hex: string | null
-  }
 }
 
 export const initialProductState: ProductState = {
   currentVariant: (null as unknown) as Variant,
   quantity: 1,
-  isSubnav: false,
-  currentColor: {
-    name: null,
-    hex: null,
-  },
 }
 
 export type Action =
   | { type: 'changeOptions'; options: any }
   | { type: 'changeQuantity'; quantity: number }
   | { type: 'resetDefault' }
-  | { type: 'changeSubnav'; payload: boolean }
 
 const useProductState = (product: Product) => {
   const { client, addToCart } = useCart()
@@ -53,8 +42,7 @@ const useProductState = (product: Product) => {
         return { ...state, quantity: 1, ...defaultVariant }
       case 'changeQuantity':
         return { ...state, quantity: action.quantity }
-      case 'changeSubnav':
-        return { ...state, isSubnav: action.payload }
+
       default:
         return state
     }
@@ -89,9 +77,6 @@ const useProductState = (product: Product) => {
     dispatch({ type: 'changeOptions', options: { ...current, ...options } })
   }
 
-  const setSubnav = (bool: boolean) =>
-    dispatch({ type: 'changeSubnav', payload: bool })
-
   const addProductToCart = () => {
     if (productState.currentVariant.available) {
       addToCart(productState.currentVariant.id, productState.quantity)
@@ -103,7 +88,6 @@ const useProductState = (product: Product) => {
     dispatch,
     productState,
     setQuantity,
-    setSubnav,
     addProductToCart,
   }
 }
